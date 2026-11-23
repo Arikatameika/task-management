@@ -26,10 +26,11 @@ function saveTasks(): void {
 
 // Mengambil elemen HTML
 const app = document.querySelector<HTMLDivElement>('#app')!
+const appName = import.meta.env.VITE_APP_NAME || 'Task Management'
 
 app.innerHTML = `
   <header class="header">
-    <h1>Task Management</h1>
+    <h1>${appName}</h1>
     <p>Kelola tugas kuliahmu dengan lebih teratur.</p>
   </header>
 

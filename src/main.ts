@@ -15,10 +15,15 @@ interface Task {
 }
 
 // Menyimpan daftar tugas
-const tasks: Task[] = JSON.parse(
-  localStorage.getItem('tasks') || '[]'
-) as Task[]
+// Mengambil data dari Local Storage menggunakan Generics
+function loadFromStorage<T>(key: string, defaultValue: T): T {
+  const data = localStorage.getItem(key)
 
+  return data ? (JSON.parse(data) as T) : defaultValue
+}
+
+// Menyimpan daftar tugas
+const tasks: Task[] = loadFromStorage<Task[]>('tasks', [])
 // Menyimpan data ke Local Storage
 function saveTasks(): void {
   localStorage.setItem('tasks', JSON.stringify(tasks))
